@@ -26,7 +26,8 @@ const app = express()
 app.use(cors());
 
 /* Use express.json() middleware to automatically parse incoming request 
-  bodies as JSON, facilitating data handling in API requests. */
+  bodies as JSON, facilitating data handling in API requests. 
+  enables easy access to body of req. */
 app.use(express.json());
 
 // expose an endpoint for the client to send their repoUrl.
@@ -35,6 +36,9 @@ app.post("/deploy", async (req, res) => {
     //req body contains the url of the repo coming from the client to be deployed
     const repoUrl = req.body.repoUrl;
 
+    
+    console.log(repoUrl) //TESTING
+    
     //generates a unique-id for the deployment
     const id = generate();
 
@@ -42,19 +46,20 @@ app.post("/deploy", async (req, res) => {
     await simpleGit().clone(repoUrl, path.join(__dirname, `output/${id}`));
 
     //gets complete filepath in the form of an array of strings.
-    const allFiles = getAllFiles(path.join(__dirname,'output/${id}'));
+    const allFiles = getAllFiles(path.join(__dirname, `output/${id}`));
 
+    // iterate over every file path and upload the files to s3.
     allFiles.forEach( async file => {
       await uploadFile(file.slice(__dirname.length+1), file)
     })
 
     await new Promise((resolve) => setTimeout(resolve, 5000))
 
-    //push id of deployment to the queue.
-    publisher.lPush("build-queue", id)
+    // //push id of deployment to the queue.
+    // publisher.lPush("build-queue", id)
 
-    //create a status for client side representation.
-    publisher.hSet("status", id, "uploaded to s3.")
+    // //create a status for client side representation.
+    // publisher.hSet("status", id, "uploaded to s3.")
 
     //sends the generated id back to client side in response body.
     res.json({
