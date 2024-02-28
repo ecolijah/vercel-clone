@@ -1,9 +1,8 @@
-//setup express app listening on oport 3000
 import express from "express";
 import cors from "cors";
 import simpleGit from "simple-git";
 import { generate } from "./utils";
-// import { getAllFiles } from "./file";
+import { getAllFiles } from "./file";
 import path from "path";
 // import { uploadFile } from "./aws";
 import { createClient } from "redis";
@@ -39,7 +38,7 @@ app.post("/deploy", async (req, res) => {
     //generates a unique-id for the deployment
     const id = generate();
 
-    //use simple-git to clone the repo into a temporary storage
+    //use simple-git to clone the repo into a temporary storage folder.
     await simpleGit().clone(repoUrl, path.join(__dirname, `output/${id}`));
 });
 
