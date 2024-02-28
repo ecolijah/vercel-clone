@@ -55,11 +55,11 @@ app.post("/deploy", async (req, res) => {
 
     await new Promise((resolve) => setTimeout(resolve, 5000))
 
-    // //push id of deployment to the queue.
-    // publisher.lPush("build-queue", id)
+    //push id of deployment to the queue.
+    publisher.lPush("build-queue", id)
 
-    // //create a status for client side representation.
-    // publisher.hSet("status", id, "uploaded to s3.")
+    //create a status for client side representation.
+    publisher.hSet("status", id, "uploaded to s3.")
 
     //sends the generated id back to client side in response body.
     res.json({
