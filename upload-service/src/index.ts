@@ -29,6 +29,8 @@ app.use(cors());
   bodies as JSON, facilitating data handling in API requests. 
   enables easy access to body of req. */
 app.use(express.json());
+console.log("directory name:" + __dirname)
+
 
 // expose an endpoint for the client to send their repoUrl.
 app.post("/deploy", async (req, res) => {
@@ -47,6 +49,7 @@ app.post("/deploy", async (req, res) => {
 
     //gets complete filepath in the form of an array of strings.
     const allFiles = getAllFiles(path.join(__dirname, `output/${id}`));
+    //right here i need to flip the backslashes to forward slashes
 
     // iterate over every file path and upload the files to s3.
     allFiles.forEach( async file => {
@@ -65,6 +68,7 @@ app.post("/deploy", async (req, res) => {
     res.json({
       id: id
     })
+    console.log("finished uploading to s3.")
 
 
 });
