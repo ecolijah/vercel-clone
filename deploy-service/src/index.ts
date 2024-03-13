@@ -22,8 +22,9 @@ async function main() {
         console.log(res) //testting redis connectivity
         await downloadS3Folder(`output\\${id}`) //uploaded from windows so its in backslahes ugh
         console.log("folder downloaded.")
-        // await buildProject(id);
-        // copyFinalDist(id);
+        await buildProject(id); //build project
+        //copy the final build folder back into s3
+        copyFinalDist(id);
         // publisher.hSet("status", id, "deployed")
     }
 }
