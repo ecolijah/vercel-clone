@@ -10,14 +10,15 @@ const s3 = new S3({
 const app = express();
 
 app.get("/*", async (req, res) => {
-    const host = req.hostname;
 
-    const id = host.split(".")[0];
+    const host = req.hostname; //erasd.vercel.com
+    const id = host.split(".")[0]; //erasd
+
     //resource the client is requesting
-    const filePath = req.path;
+    const filePath = req.path; //index.html
 
     const contents = await s3.getObject({
-        Bucket: "vercel",
+        Bucket: "my-vercel-clone-bucket",
         Key: `dist/${id}${filePath}`
     }).promise();
     

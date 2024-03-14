@@ -26,6 +26,7 @@ async function main() {
         //copy the final build folder back into s3
         copyFinalDist(id);
         // publisher.hSet("status", id, "deployed")
+        // ideally we want to delete the dist folder from local storage as well here
     }
 }
 main();
