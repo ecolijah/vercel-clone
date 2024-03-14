@@ -49,11 +49,16 @@ app.post("/deploy", async (req, res) => {
 
     //gets complete filepath in the form of an array of strings.
     const allFiles = getAllFiles(path.join(__dirname, `output/${id}`));
-    //right here i need to flip the backslashes to forward slashes
-
+ 
     // iterate over every file path and upload the files to s3.
     allFiles.forEach( async file => {
-      await uploadFile(file.slice(__dirname.length+1), file)
+      //normalize 
+      //right here i need to flip the backslashes to forward slashes
+    
+      var tmp = path.normalize(file)
+      var newPath = tmp.replace(/\\/g, '/');
+      // console.log("normalized path: "  + newPath)
+      await uploadFile(newPath.slice(__dirname.length+1), newPath)
     })
 
     await new Promise((resolve) => setTimeout(resolve, 5000))

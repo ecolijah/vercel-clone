@@ -20,7 +20,7 @@ async function main() {
         // @ts-ignore; //redis thinks its returning a string but its actually an object?
         const id = res.element
         console.log(res) //testting redis connectivity
-        await downloadS3Folder(`output\\${id}`) //uploaded from windows so its in backslahes ugh
+        await downloadS3Folder(`output/${id}`) //uploaded from windows so its in backslahes ugh
         console.log("folder downloaded.")
         await buildProject(id); //build project
         //copy the final build folder back into s3
