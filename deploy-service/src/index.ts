@@ -25,7 +25,7 @@ async function main() {
         await buildProject(id); //build project
         //copy the final build folder back into s3
         copyFinalDist(id);
-        // publisher.hSet("status", id, "deployed")
+        publisher.hSet("status", id, "deployed.")
         // ideally we want to delete the dist folder from local storage as well here
     }
 }
