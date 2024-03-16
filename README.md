@@ -1,4 +1,4 @@
-# Simplified Vercel-Like Service for React Projects
+# Simplified Vercel-Like Service
 
 ## Introduction
 
@@ -7,6 +7,8 @@ This [article](https://vercel.com/blog/behind-the-scenes-of-vercels-infrastructu
 I want to make it clear that this was a code along demonstrated by [Harikat Singh](https://www.youtube.com/watch?v=c8_tafixiAs&list=LL&index=22&t=7945s), that I took upon because I was interested in learning about the over-arching system design principles in a system like Vercel.
 
 That being said, I learned quite a bit and was able to gain experience with some tools I had never touched before. (TypeScript, Redis, AWS) However, the simplified system design was by far the most intriguing, and after building it, I was only more amazed at how complex and layered a product like Vercel must be. It's interesting to see the building blocks behind such a polished project, only then can you gain a sense of how much work it took.
+
+- ** Only supports React projects and bare HTML/CSS/JS.
 
 ## How it Works
 
@@ -43,3 +45,7 @@ That being said, I learned quite a bit and was able to gain experience with some
 - I would test this by clearing the DNS cache (or open an incognito window) and visiting [http://srnwx.ecolijah.com:3001/index.html](http://srnwx.ecolijah.com:3001/index.html), which is connected to port 3001 and requesting the resource index.html.
 
 ## Conclusions
+
+-**Containerization:** During the build phase, it seemed a bit finnicky to be using build folder or distribution folders and then uploading them to s3. This uncomfortable feeling came about in many ways, but mostly because of the disparity in configurations that would be possible when actually supporting a large and diverse consumer base. This is where containerization obvioulsy comes into play, but i did not yet have any experience with it, and was pretty much over this learning experience at that point. However, containerization will now be my next learning escapade, as it is a norm in commercialized tech. Also, the concept is satisfying.
+
+-**Seperation of Upload/Deploy Services:** At first glance, the seperation and redundancy of the upload and deploy services may seem like a stupid way to get the job done. But when you take into consideration the bottlenecking effect some large builds may have on the sequential nature of this project it becomes clear. By seperating the services into 2 different nodejs runtimes, as well as express servers, and adding a queue between them; We ensure that the building of the applications has no slow-down effect on the upload service.
