@@ -6,9 +6,9 @@ This [article](https://vercel.com/blog/behind-the-scenes-of-vercels-infrastructu
 
 I want to make it clear that this was a code along demonstrated by [Harikat Singh](https://www.youtube.com/watch?v=c8_tafixiAs&list=LL&index=22&t=7945s), that I took upon because I was interested in learning about the over-arching system design principles in a system like Vercel.
 
-That being said, I learned quite a bit and was able to gain experience with some tools I had never touched before. (TypeScript, Redis, AWS) However, the simplified system design was by far the most intriguing, and after building it, I was only more amazed at how complex and layered a product like Vercel must be. It's interesting to see the building blocks behind such a polished project, only then can you gain a sense of how much work it took.
+That being said, I learned quite a bit and was able to gain experience with some tools I had never touched before. (TypeScript, Redis, AWS) However, the simplified system design was by far the most intriguing, and after building it, I was intrigued at how complex and layered even a product like Vercel must be. It's interesting to see the building blocks of a recently succesful startup. (founded in 2015)
 
-- ** Only supports React projects and bare HTML/CSS/JS.
+** Only supports React projects and bare HTML/CSS/JS.
 
 ## How it Works
 
