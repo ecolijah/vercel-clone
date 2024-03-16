@@ -10,7 +10,7 @@ That being said, I learned quite a bit and was able to gain experience with some
 
 ## How it Works
 
-![system-architecture](system-arch.pdf)
+[system-architecture](system-arch.pdf)
 
 **Upload Service**: 
 
