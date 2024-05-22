@@ -34,7 +34,7 @@ That being said, I learned quite a bit and was able to gain experience with some
 
 **Request Handler**: 
  
-(I did not want to pay for the EC2 instance to host it remotely, so I just emulated it on my machine, but it is essentially the same process.)
+(I did not want to keep paying for the EC2 instance to host it remotely, so I just hosted it locally, but it is essentially the same process.)
 
 - A simple express server is started and listening on port 3001.
 - A global catch route is listening for any requests that are pointed to my machine on port 3001.
